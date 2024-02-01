@@ -1,0 +1,27 @@
+#options {
+    width: 99%;
+    height: 50px;
+    margin: 5px;
+    display: flex;
+    flex-direction: row;
+}
+
+button {
+    width: 20%;
+    margin: 5px;
+}
+
+#work-area {
+    width: 99%;
+    margin: 5px;
+}
+
+#work-area p {
+    width: 100%;
+    text-align: center;
+    font-size: 18pt;
+}
+
+#work-options {
+    text-align: center;
+}

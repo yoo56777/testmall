@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>後台管理系統</title>
+    <!-- 新 Bootstrap5 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
+    <!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
+    <!-- Jquery JavaScript 文件 -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+</head>
+<body>
+    <div id="Login" style="margin-top: 50px;margin-left: 20px;">
+        <p style="font-size: 30pt;">購物車測試資料</p>
+        <div class="mb-3" style="width: 30%;">
+            <label for="apiInput" class="form-label">API網址</label>
+            <input type="text" class="form-control" id="apiInput" value="http://localhost:9090/">
+        </div>        
+        <div class="mb-3" style="width: 30%;">
+            <label for="seqInput" class="form-label">購物車流水號</label>
+            <input type="text" class="form-control" id="seqInput">
+        </div>
+        <div class="mb-3" style="width: 30%;">
+            <label for="accountInput" class="form-label">帳號</label>
+            <input type="text" class="form-control" id="accountInput">
+        </div>
+        <div class="mb-3" style="width: 30%;">
+            <label for="noInput" class="form-label">商品編號</label>
+            <input type="text" class="form-control" id="noInput">
+        </div>
+        <div class="mb-3" style="width: 30%;">
+            <label for="qtyInput" class="form-label">購買數量</label>
+            <input type="text" class="form-control" id="qtyInput">
+        </div>                
+        <button class="btn btn-primary" type="submit" id="sendBtn" style="margin-left: 25%;margin-top: 15px;" onclick="login()">送出</button>
+        <p id="msg">訊息:</p>
+    </div>  
+    <script>
+        $('#qtyInput').on('keyup', function(event){
+            event.preventDefault();
+            if (event.keyCode === 13) {
+                $('#sendBtn').click();
+            }
+        });
+
+        function login(){
+            let dataUrl = $('#apiInput').val()
+            let jsonData = { 
+                             cartSeq : Number($('#seqInput').val()),
+                             cartAccount : $('#accountInput').val(),
+                             cartCommodityID : Number($('#noInput').val()),
+                             cartQty : Number($('#qtyInput').val()),
+                           }
+            console.log(jsonData)
+                       
+            $.ajax({
+                url: dataUrl,
+                method: 'POST',
+                dataType: 'text',
+                data: JSON.stringify(jsonData),
+                async: false,      
+                contentType: 'application/json;charset=utf-8',
+                cache: false,
+            
+                success: res => {
+                    window.alert(res)
+                    $('#msg').text("訊息:"+res);
+                },
+            
+                error: err => {
+                    console.log(err)
+                    $('#msg').text("訊息:"+err.responseText);
+                },
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首頁</title>
+    <!-- 新 Bootstrap5 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
+    <!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
+    <!-- Jquery JavaScript 文件 -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+
+    <script src="/static/js/HTMLEvent.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/HomePage.css">
+    <script>
+        $(document).ready(function () {
+            getAll();
+        });
+        $(window).on("unload", function() { });
+    </script>
+</head>
+<body>
+    <nav class="menu">
+        <a href="HomePage.html">
+            <img src="../static/images/首頁.png" style="width:25px;height:25px;top:50%;left:2%;">
+        </a>
+        <a href="Login.html" style="top:25%;left:95%;">登入</a>
+    </nav>
+    <div class="content">
+        <div class="border border-dark" id="tag-bar">
+            <button type="button" class="btn btn-outline-primary" onclick="getAll()">全部</button>
+            <button type="button" class="btn btn-outline-danger" onclick="getByTag(this)">水果</button>
+            <button type="button" class="btn btn-outline-dark" onclick="getByTag(this)">狗</button>
+        </div>
+        <div class="border border-dark" id="com-list">
+        </div>
+    </div>
+</body>
+</html>

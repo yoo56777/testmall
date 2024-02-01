@@ -1,0 +1,1 @@
+$("#options").load("../static/commonhtml/options.html")

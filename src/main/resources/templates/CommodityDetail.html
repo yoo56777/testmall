@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品詳細資料</title>
+    <!-- 新 Bootstrap5 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
+    <!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
+    <!-- Jquery JavaScript 文件 -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+
+    <script src='../static/js/HTMLEvent.js'></script>
+    <style>
+        #com-detail::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+    <script>
+        function addValue(){
+            let v = $('#count').val();
+            v++;
+            $('#count').val(v);
+        }
+        function subValue(){
+            let v = $('#count').val();
+            if (v > 1){
+                v--;
+                $('#count').val(v);
+            }
+        }
+        $(document).ready(function () {
+            getById();
+        });
+        $(window).on("unload", function() { });
+    </script>
+</head>
+<body>
+    <div id="item-info" style="display: flex">
+        <div style="width: 400px; height: 400px; margin: 5px;">
+            <img id="com-img" src="" style="max-width: 100%;">
+        </div>
+        <div style="display: flex; width:300px; margin: 5px; flex-direction: column;">
+            <div style="width: 100%; height: 200px;">
+                <p id="com-detail" style="height:100%; word-wrap:break-word; overflow: scroll;"></p>
+            </div>
+            <div style="margin: 10px">
+                <button type="button" class="btn btn-outline-primary" onclick="subValue()">－</button>
+                <input id="count" type="text" placeholder="輸入數量" value="1" style="text-align:center;">
+                <button type="button" class="btn btn-outline-primary" onclick="addValue()">＋</button>
+            </div>
+            <div style="text-align:center">
+                <button type="button" class="btn btn-danger" style="width: 100%">購買</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

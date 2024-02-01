@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>管理員帳號管理</title>
+    <!-- Jquery JavaScript 文件 -->
+    <script src="../static/js/jquery.min.js"></script>    
+    <!-- 新 Bootstrap5 核心 CSS 文件 -->
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+
+    <div class="modal fade" id="insertModal" tabindex="-1" aria-labelledby="insertModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="insertModalLabel">新增管理員</h5>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="insert-account" class="col-form-label">帳號:</label>
+                            <input type="text" class="form-control" id="insert-account">
+                        </div>
+                        <div class="mb-3">
+                            <label for="insert-password" class="col-form-label">密碼:</label>
+                            <input type="text" class="form-control" id="insert-password">
+                        </div>
+                        <div class="mb-3">
+                            <label for="insert-salt" class="col-form-label">鹽值:</label>
+                            <input type="text" class="form-control" id="insert-salt" readonly="readonly">
+                        </div>                        
+                        <div class="mb-3">
+                            <label for="insert-name" class="col-form-label">姓名:</label>
+                            <input type="text" class="form-control" id="insert-name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="insert-phone" class="col-form-label">電話:</label>
+                            <input type="text" class="form-control" id="insert-phone">
+                        </div>
+                        <div class="mb-3">
+                            <label for="insert-email" class="col-form-label">信箱:</label>
+                            <input type="text" class="form-control" id="insert-email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="insert-address" class="col-form-label">通訊地址:</label>
+                            <input type="text" class="form-control" id="insert-address">
+                        </div>                        
+                        <div class="mb-3">
+                            <label for="insert-note" class="col-form-label">備註:</label>
+                            <input type="text" class="form-control" id="insert-note">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                    <button type="button" class="btn btn-primary" id="insert-data" onclick="insertItem()">送出</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="updateModalLabel">更新管理員資料</h5>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="update-account" class="col-form-label">帳號:</label>
+                            <input type="text" class="form-control" id="update-account">
+                        </div>
+                        <div class="mb-3">
+                            <label for="update-password" class="col-form-label">密碼:</label>
+                            <input type="text" class="form-control" id="update-password">
+                        </div>
+                        <div class="mb-3">
+                            <label for="update-salt" class="col-form-label">鹽值:</label>
+                            <input type="text" class="form-control" id="update-salt" readonly="readonly">
+                        </div>                        
+                        <div class="mb-3">
+                            <label for="update-name" class="col-form-label">姓名:</label>
+                            <input type="text" class="form-control" id="update-name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="update-phone" class="col-form-label">電話:</label>
+                            <input type="text" class="form-control" id="update-phone">
+                        </div>
+                        <div class="mb-3">
+                            <label for="update-email" class="col-form-label">信箱:</label>
+                            <input type="text" class="form-control" id="update-email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="update-address" class="col-form-label">通訊地址:</label>
+                            <input type="text" class="form-control" id="update-address">
+                        </div>                        
+                        <div class="mb-3">
+                            <label for="update-note" class="col-form-label">備註:</label>
+                            <input type="text" class="form-control" id="update-note">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                    <button type="button" class="btn btn-primary" id="update-data" onclick="updateItem()">送出</button>
+                </div>
+            </div>
+        </div>
+    </div>    
+
+    <script src="../static/js/globalparam.js"></script>
+    <script src="../static/js/Manager.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/common.css">    
+</head>
+<body>
+    <div id="options">
+        <!--內容在/static/commonhtml/options.html-->
+    </div>
+    <div id="work-area">
+        <p class="border border-dark">管理員帳號管理系統</p>
+        <div id="work-options">
+            <button type="button" class="btn btn-outline-dark" onclick="getAll()">查詢管理員帳號</button>
+            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#insertModal">新增管理員帳號</button>
+            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#updateModal">更新管理員帳號</button>
+            <button type="button" class="btn btn-outline-dark" onclick="deleteItem()">刪除管理員帳號</button>
+        </div>
+
+        <table class="table">
+
+        </table>
+    </div>
+    <script src='../static/js/common.js'></script>
+</body>
+</html>

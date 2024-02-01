@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>商品管理</title>
+    <!-- Jquery JavaScript 文件 -->
+    <script src="../static/js/jquery.min.js"></script>    
+    <!-- 新 Bootstrap5 核心 CSS 文件 -->
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+
+    <div class="modal fade" id="insertModal" tabindex="-1" aria-labelledby="insertModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="insertModalLabel">新增商品</h5>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="insert-name" class="col-form-label">商品名稱:</label>
+                            <input type="text" class="form-control" id="insert-name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="insert-qty" class="col-form-label">庫存數量:</label>
+                            <input type="text" class="form-control" id="insert-qty">
+                        </div>
+                        <div class="mb-3">
+                            <label for="insert-price" class="col-form-label">價格:</label>
+                            <input type="text" class="form-control" id="insert-price">
+                        </div>
+                        <div class="mb-3">
+                            <label for="insert-tag" class="col-form-label">商品分類:</label>
+                            <input type="text" class="form-control" id="insert-tag">
+                        </div>
+                        <div class="mb-3">
+                            <label for="insert-imgPath" class="col-form-label">圖片位址:</label>
+                            <input type="text" class="form-control" id="insert-imgPath">
+                        </div>
+                        <div class="mb-3">
+                            <label for="insert-detail" class="col-form-label">詳細資訊:</label>
+                            <input type="text" class="form-control" id="insert-detail">
+                        </div>                        
+                        <div class="mb-3">
+                            <label for="insert-sale" class="col-form-label">銷售中:</label>
+                            <input type="number" class="form-control" id="insert-sale">
+                        </div>
+                        <div class="mb-3">
+                            <label for="insert-discount" class="col-form-label">折扣:</label>
+                            <input type="number" class="form-control" id="insert-discount">
+                        </div>
+                        <div class="mb-3">
+                            <label for="insert-rate" class="col-form-label">幾折:</label>
+                            <input type="number" class="form-control" id="insert-rate">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                    <button type="button" class="btn btn-primary" id="insert-data" onclick="insertItem()">送出</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="updateModalLabel">更新商品</h5>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="update-name" class="col-form-label">商品名稱:</label>
+                            <input type="text" class="form-control" id="update-name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="update-qty" class="col-form-label">庫存數量:</label>
+                            <input type="text" class="form-control" id="update-qty">
+                        </div>
+                        <div class="mb-3">
+                            <label for="update-price" class="col-form-label">價格:</label>
+                            <input type="text" class="form-control" id="update-price">
+                        </div>
+                        <div class="mb-3">
+                            <label for="update-tag" class="col-form-label">商品分類:</label>
+                            <input type="text" class="form-control" id="update-tag">
+                        </div>
+                        <div class="mb-3">
+                            <label for="update-imgPath" class="col-form-label">圖片位址:</label>
+                            <input type="text" class="form-control" id="update-imgPath">
+                        </div>
+                        <div class="mb-3">
+                            <label for="update-detail" class="col-form-label">詳細資訊:</label>
+                            <input type="text" class="form-control" id="update-detail">
+                        </div>                        
+                        <div class="mb-3">
+                            <label for="update-sale" class="col-form-label">銷售中:</label>
+                            <input type="number" class="form-control" id="update-sale">
+                        </div>
+                        <div class="mb-3">
+                            <label for="update-discount" class="col-form-label">折扣:</label>
+                            <input type="number" class="form-control" id="update-discount">
+                        </div>
+                        <div class="mb-3">
+                            <label for="update-rate" class="col-form-label">幾折:</label>
+                            <input type="number" class="form-control" id="update-rate">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                    <button type="button" class="btn btn-primary" id="update-data" onclick="updateItem()">送出</button>
+                </div>
+            </div>
+        </div>
+    </div>    
+
+    <script src="../static/js/globalparam.js"></script>
+    <script src="../static/js/CommodityManager.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/common.css">    
+</head>
+<body>
+    <div id="options">
+        <!--內容在/static/commonhtml/options.html-->
+    </div>
+    <div id="work-area">
+        <p class="border border-dark">商品管理系統</p>
+        <div id="work-options">
+            <button type="button" class="btn btn-outline-dark" onclick="getAll()">查詢商品</button>
+            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#insertModal">新增商品</button>
+            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#updateModal">更新商品</button>
+            <button type="button" class="btn btn-outline-dark" onclick="deleteItem()">刪除商品</button>
+        </div>
+
+        <table class="table">
+
+        </table>
+    </div>
+    <script src='../static/js/common.js'></script>
+</body>
+</html>

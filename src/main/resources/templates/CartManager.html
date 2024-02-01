@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>購物車管理</title>
+    <!-- Jquery JavaScript 文件 -->
+    <script src="../static/js/jquery.min.js"></script>    
+    <!-- 新 Bootstrap5 核心 CSS 文件 -->
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+
+    <div class="modal fade" id="insertModal" tabindex="-1" aria-labelledby="insertModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="insertModalLabel">新增購物車</h5>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="insert-account" class="col-form-label">帳號:</label>
+                            <input type="text" class="form-control" id="insert-account">
+                        </div>
+                        <div class="mb-3">
+                            <label for="insert-id" class="col-form-label">商品編號:</label>
+                            <input type="number" class="form-control" id="insert-id">
+                        </div>
+                        <div class="mb-3">
+                            <label for="insert-qty" class="col-form-label">數量:</label>
+                            <input type="number" class="form-control" id="insert-qty">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                    <button type="button" class="btn btn-primary" id="insert-data" onclick="insertItem()">送出</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="updateModalLabel">更新購物車</h5>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="update-account" class="col-form-label">帳號:</label>
+                            <input type="text" class="form-control" id="update-account">
+                        </div>
+                        <div class="mb-3">
+                            <label for="update-id" class="col-form-label">商品編號:</label>
+                            <input type="number" class="form-control" id="update-id">
+                        </div>
+                        <div class="mb-3">
+                            <label for="update-qty" class="col-form-label">數量:</label>
+                            <input type="number" class="form-control" id="update-qty">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                    <button type="button" class="btn btn-primary" id="update-data" onclick="updateItem()">送出</button>
+                </div>
+            </div>
+        </div>
+    </div>    
+
+    <script src="../static/js/globalparam.js"></script>
+    <script src="../static/js/CartManager.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/common.css">    
+</head>
+<body>
+    <div id="options">
+        <!--內容在/static/commonhtml/options.html-->
+    </div>
+    <div id="work-area">
+        <p class="border border-dark">購物車管理系統</p>
+        <div id="work-options">
+            <button type="button" class="btn btn-outline-dark" onclick="getAll()">查詢購物車</button>
+            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#insertModal">新增購物車</button>
+            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#updateModal">更新購物車</button>
+            <button type="button" class="btn btn-outline-dark" onclick="deleteItem()">刪除購物車</button>
+        </div>
+
+        <table class="table">
+
+        </table>
+    </div>
+    <script src='../static/js/common.js'></script>
+</body>
+</html>
