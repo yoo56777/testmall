@@ -1,0 +1,7 @@
+java 1.8
+-cp testmall.main
+com.testmall.TestmallApplication
+
+or
+Gradle
+Tasks/application/bootRun
